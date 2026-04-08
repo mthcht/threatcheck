@@ -28,6 +28,10 @@ Select any indicator of compromise on any web page - or highlight an entire para
 
 ---
 
+<img width="1377" height="1061" alt="image" src="https://github.com/user-attachments/assets/47f520c9-df05-487b-b689-7b4fa1a10fe2" />
+
+---
+
 ## How it works
 
 1. **Select** any text on any web page
