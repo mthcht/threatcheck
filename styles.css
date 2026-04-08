@@ -1,0 +1,75 @@
+/* ThreatCheck by thunting.io */
+
+.cc-p{position:absolute;z-index:2147483647;min-width:150px;max-width:620px;max-height:85vh;background:#1a1c23;border:1px solid rgba(255,255,255,.1);border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.5);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;font-size:11px;color:#e4e4e7;padding:0;overflow-y:auto;overflow-x:hidden;animation:cc-in .1s ease-out;user-select:none;line-height:1.2;box-sizing:border-box;transition:max-width .15s;width:max-content}
+/* Expand popup when context panel is visible */
+.cc-p:has(.cc-ctx){max-width:620px}
+.cc-p *,.cc-p *::before,.cc-p *::after,.cc-bp *,.cc-bp *::before,.cc-bp *::after{box-sizing:border-box}
+.cc-out{animation:cc-out .08s ease-in forwards}
+@keyframes cc-in{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes cc-out{to{opacity:0;transform:scale(.94)}}
+.cc-h{display:flex;align-items:center;gap:3px;padding:4px 3px 3px 6px;border-bottom:1px solid rgba(255,255,255,.06)}
+.cc-b{flex-shrink:0;padding:0 5px;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.18);border-radius:100px;font-size:9px;font-weight:600;color:#93c5fd;white-space:nowrap;line-height:16px}
+.cc-v{flex:1;min-width:0;font-family:"SF Mono","Cascadia Code","Fira Code",Consolas,monospace;font-size:9px;color:#9ca3af;white-space:nowrap;user-select:text;overflow:hidden;text-overflow:ellipsis}
+.cc-ib{all:unset;cursor:pointer;flex-shrink:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;border-radius:4px;color:#6b7280;transition:all .08s;text-decoration:none}
+.cc-ib svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1.4}
+.cc-ib:hover{background:rgba(255,255,255,.08);color:#e4e4e7}
+.cc-l{padding:2px;max-height:70vh;overflow-y:auto;overflow-x:hidden;min-width:160px}
+.cc-l::-webkit-scrollbar{width:3px}
+.cc-l::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:10px}
+.cc-r{all:unset;cursor:pointer;display:flex;align-items:center;gap:5px;padding:3px 5px;border-radius:5px;font-size:11px;font-weight:500;color:#e4e4e7;text-decoration:none;transition:background .06s;width:100%;white-space:nowrap}
+.cc-r:hover{background:rgba(255,255,255,.07)}
+.cc-r:active{background:rgba(255,255,255,.1)}
+.cc-i{flex-shrink:0;width:12px;height:12px;display:flex;align-items:center;justify-content:center;color:var(--c,#60a5fa)}
+.cc-i svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.4}
+.cc-r:hover .cc-i{color:#fff}
+.cc-nm{flex:1}
+/* API auto-check score badge */
+.cc-sc{flex-shrink:0;font-size:8px;font-weight:600;margin-left:auto;padding:0 4px;border-radius:100px;line-height:14px;white-space:nowrap}
+
+/* Bulk IOC Panel */
+.cc-bp{position:absolute;z-index:2147483647;min-width:320px;max-width:620px;width:max-content;max-height:85vh;background:#1a1c23;border:1px solid rgba(255,255,255,.1);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.55);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;font-size:11px;color:#e4e4e7;padding:0;overflow:hidden;display:flex;flex-direction:column;animation:cc-in .1s ease-out;user-select:none;line-height:1.3;box-sizing:border-box}
+.cc-bh{display:flex;align-items:center;justify-content:space-between;padding:8px 6px 6px 10px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.cc-bt{font-size:12px;font-weight:600;color:#e4e4e7}
+.cc-btb{display:flex;align-items:center;gap:6px;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.cc-bsa{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:500;color:#9ca3af;cursor:pointer;user-select:none}
+.cc-bsa input[type="checkbox"]{width:13px;height:13px;accent-color:#60a5fa;cursor:pointer;margin:0}
+.cc-bact{all:unset;cursor:pointer;padding:3px 8px;border-radius:5px;font-size:10px;font-weight:500;color:#93c5fd;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.1);transition:all .1s;white-space:nowrap;margin-left:auto}
+.cc-bact:hover{background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.2)}
+.cc-bl{flex:1;overflow-y:auto;padding:3px 4px}
+.cc-bl::-webkit-scrollbar{width:4px}
+.cc-bl::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:10px}
+.cc-br{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:6px;cursor:pointer;transition:background .06s}
+.cc-br:hover{background:rgba(255,255,255,.05)}
+.cc-br input[type="checkbox"]{width:13px;height:13px;accent-color:#60a5fa;cursor:pointer;margin:0;flex-shrink:0}
+.cc-bb{flex-shrink:0;padding:0 5px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.15);border-radius:100px;font-size:8px;font-weight:600;color:#93c5fd;white-space:nowrap;line-height:15px;min-width:34px;text-align:center}
+.cc-bv{flex:1;min-width:0;font-family:"SF Mono","Cascadia Code","Fira Code",Consolas,monospace;font-size:10px;color:#d1d5db;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cc-ba{flex-shrink:0;color:#4b5563;font-size:14px;font-weight:300;transition:color .08s}
+.cc-br:hover .cc-ba{color:#93c5fd}
+
+/* RF/OpenCTI Context Detail Panel */
+.cc-ctx{padding:6px 8px 8px;background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.04);overflow-x:hidden;min-width:320px}
+.cc-ctx::-webkit-scrollbar{width:4px}
+.cc-ctx::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px}
+.cc-ctx-sum{font-size:10px;color:#9ca3af;line-height:1.4;padding:2px 2px 6px;margin-bottom:2px}
+.cc-ctx-sections{display:flex;flex-wrap:wrap;gap:3px;padding:2px 2px 6px}
+.cc-ctx-tag{font-size:8px;padding:1px 6px;border-radius:100px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.12);color:#93c5fd;white-space:nowrap}
+.cc-ctx-rw{border-bottom:1px solid rgba(255,255,255,.04);padding:2px 0}
+.cc-ctx-rw:last-child{border-bottom:none}
+.cc-ctx-rule{display:flex;align-items:flex-start;gap:6px;padding:4px 2px;border-radius:4px;font-size:10px;color:#d1d5db;cursor:pointer}
+.cc-ctx-rule:hover{background:rgba(255,255,255,.04)}
+.cc-ctx-dot{flex-shrink:0;width:7px;height:7px;border-radius:50%;margin-top:3px}
+.cc-ctx-name{flex:1;line-height:1.4;word-break:break-word;user-select:text}
+.cc-ctx-crit{flex-shrink:0;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin-top:1px}
+.cc-ctx-det{display:none;padding:4px 4px 6px 17px;user-select:text;overflow:hidden}
+.cc-ctx-det.show{display:block}
+.cc-ctx-meta{font-size:9px;color:#6b7280;margin-bottom:3px;user-select:text;overflow-wrap:break-word}
+.cc-ctx-desc{font-size:9px;color:#b0b5bf;line-height:1.5;word-break:break-word;user-select:text;white-space:pre-wrap;overflow-wrap:break-word;overflow:hidden}
+.cc-ctx-link{color:#60a5fa;text-decoration:none;word-break:break-all}
+.cc-ctx-link:hover{text-decoration:underline;color:#93c5fd}
+
+/* Back button in single IOC popup (when drilled from bulk) */
+.cc-back{color:#93c5fd !important}
+.cc-back:hover{background:rgba(96,165,250,.15) !important;color:#bfdbfe !important}
+
+/* Bulk panel inline score badges */
+.cc-bsc{display:flex;gap:3px;flex-shrink:0;align-items:center;margin-left:auto;padding-right:2px}

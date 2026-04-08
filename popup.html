@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:300px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;background:#1a1c23;color:#e4e4e7}
+  .wrap{padding:16px 16px 12px}
+  .brand{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+  .brand svg{color:#60a5fa;flex-shrink:0}
+  .brand h2{font-size:15px;font-weight:600}
+  .brand span{font-size:9px;color:#4b5563;margin-left:auto;font-weight:500}
+  .desc{font-size:11.5px;color:#9ca3af;line-height:1.55;margin-bottom:14px}
+  .desc strong{color:#d1d5db;font-weight:500}
+  .section{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#4b5563;margin:10px 0 6px;padding-left:2px}
+  .types{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+  .type-tag{font-size:9px;padding:2px 8px;border-radius:100px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.1);color:#93c5fd;white-space:nowrap}
+  .stats{font-size:11px;color:#6b7280;margin-bottom:12px;padding:10px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.04);border-radius:8px;display:flex;flex-direction:column;gap:4px}
+  .stat-row{display:flex;justify-content:space-between;align-items:center}
+  .stat-row span:first-child{color:#9ca3af}
+  .stat-val{font-weight:600;color:#60a5fa}
+  .stat-val.green{color:#34d399}
+  .btn{display:block;width:100%;padding:9px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.12);border-radius:8px;color:#93c5fd;font-size:12px;font-weight:500;cursor:pointer;text-align:center;transition:all .12s}
+  .btn:hover{background:rgba(96,165,250,.18);border-color:rgba(96,165,250,.25)}
+  .foot{padding:10px 16px;border-top:1px solid rgba(255,255,255,.05);text-align:center;font-size:9px;color:#4b5563;line-height:1.8}
+  .foot a{color:#60a5fa;text-decoration:none}.foot a:hover{color:#93c5fd;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <svg viewBox="0 0 22 22" width="20" height="20" fill="none"><rect x="1" y="1" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><path d="M7 11l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h2>ThreatCheck</h2>
+    <span id="version"></span>
+  </div>
+
+  <p class="desc">Select any <strong>indicator</strong> on a web page - or highlight an <strong>entire paragraph</strong> from a threat report, blog post, paste, or ticket - and instantly extract and look up every IOC across multiple threat intel platforms. Supports defanged indicators, bare URLs, and bulk extraction with auto-deduplication.</p>
+
+  <div class="section">Supported IOC types</div>
+  <div class="types">
+    <span class="type-tag">IPv4 / IPv6</span>
+    <span class="type-tag">Domain</span>
+    <span class="type-tag">URL</span>
+    <span class="type-tag">Hash (MD5/SHA1/SHA256)</span>
+    <span class="type-tag">Email</span>
+    <span class="type-tag">CVE</span>
+    <span class="type-tag">Event ID</span>
+    <span class="type-tag">Error Code</span>
+  </div>
+
+  <div class="stats" id="stats">Loading…</div>
+
+  <button class="btn" id="settingsBtn">Configure services & API keys</button>
+</div>
+<div class="foot">
+  <a href="https://github.com/mthcht/threatcheck" target="_blank" rel="noopener noreferrer">github.com/mthcht/threatcheck</a><br>
+  No ads - No data collection - Open source
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Welcome to ThreatCheck</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0d0f14;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;line-height:1.6;min-height:100vh}
+  .hero{text-align:center;padding:60px 24px 40px;background:linear-gradient(180deg,rgba(96,165,250,.06) 0%,transparent 100%)}
+  .logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:20px}
+  .logo svg{color:#60a5fa}
+  .logo h1{font-size:32px;font-weight:700;letter-spacing:-.02em}
+  .logo .ver{font-size:13px;color:#4b5563;font-weight:500;margin-left:4px}
+  .tagline{font-size:17px;color:#9ca3af;max-width:600px;margin:0 auto 28px}
+  .pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:0}
+  .pill{font-size:11px;padding:4px 14px;border-radius:100px;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.12);color:#93c5fd;white-space:nowrap}
+  .content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+  .section{margin-top:48px}
+  .section h2{font-size:20px;font-weight:600;margin-bottom:16px;color:#e4e4e7;display:flex;align-items:center;gap:10px}
+  .section h2 .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.18);color:#60a5fa;font-size:13px;font-weight:700;flex-shrink:0}
+  .section p,.section li{font-size:14px;color:#9ca3af;line-height:1.7}
+  .section ul{list-style:none;padding:0;margin:12px 0}
+  .section li{padding:6px 0;padding-left:20px;position:relative}
+  .section li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:#60a5fa}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:16px}
+  .card{padding:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;transition:border-color .15s}
+  .card:hover{border-color:rgba(96,165,250,.2)}
+  .card h3{font-size:13px;font-weight:600;color:#d1d5db;margin-bottom:6px}
+  .card p{font-size:11px;color:#6b7280;line-height:1.5;margin:0}
+  .card .tag{display:inline-block;font-size:9px;padding:1px 8px;border-radius:100px;margin-top:8px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+  .tag-free{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.15);color:#34d399}
+  .tag-api{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.12);color:#fbbf24}
+  .demo{margin-top:20px;padding:20px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px}
+  .demo h3{font-size:13px;font-weight:600;color:#d1d5db;margin-bottom:8px}
+  .demo code{display:block;font-family:"SF Mono","Cascadia Code","Fira Code",Consolas,monospace;font-size:12px;color:#60a5fa;padding:8px 12px;background:rgba(0,0,0,.3);border-radius:6px;margin:4px 0;overflow-x:auto;white-space:nowrap}
+  .demo .arrow{color:#4b5563;font-size:11px;margin:6px 0;text-align:center}
+  .cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .15s}
+  .btn-primary{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.25);color:#93c5fd}
+  .btn-primary:hover{background:rgba(96,165,250,.25);border-color:rgba(96,165,250,.35)}
+  .btn-secondary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#9ca3af}
+  .btn-secondary:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#e4e4e7}
+  .btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5}
+  .footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(255,255,255,.04);font-size:11px;color:#4b5563;margin-top:48px}
+  .footer a{color:#60a5fa;text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+  @media(max-width:600px){.shortcuts{grid-template-columns:1fr}.card-grid{grid-template-columns:1fr}.hero{padding:40px 16px 24px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo">
+    <svg viewBox="0 0 32 32" width="36" height="36" fill="none">
+      <rect x="1" y="1" width="30" height="30" rx="7" stroke="currentColor" stroke-width="2"/>
+      <path d="M10 16l5 5 8-9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h1>ThreatCheck <span class="ver">v1.0.0</span></h1>
+  </div>
+  <p class="tagline">Instantly look up any indicator of compromise across 29 threat intelligence platforms - right from your browser.</p>
+  <div class="pills">
+    <span class="pill">IPv4 / IPv6</span>
+    <span class="pill">Domain</span>
+    <span class="pill">URL</span>
+    <span class="pill">Hash (MD5/SHA1/SHA256)</span>
+    <span class="pill">Email</span>
+    <span class="pill">CVE</span>
+    <span class="pill">Event ID</span>
+    <span class="pill">Error Code</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <h2><span class="num">1</span> How it works</h2>
+    <p>Select any text on any web page. ThreatCheck automatically detects IOCs and shows a popup with relevant lookup services. No copy-pasting between tabs.</p>
+
+    <div class="demo">
+      <h3>Select a single IOC</h3>
+      <code>203.161.50.145</code>
+      <div class="arrow">&#8595; popup appears with VirusTotal, AbuseIPDB, Shodan, Spur, GreyNoise...</div>
+    </div>
+
+    <div class="demo" style="margin-top:8px">
+      <h3>Select an entire paragraph</h3>
+      <code>The malware beacons to 185.220.101.42 and c2-server[.]evil[.]com, drops payload (SHA256: a1b2c3d4e5...)</code>
+      <div class="arrow">&#8595; bulk panel extracts all 3 IOCs with auto-deduplication and refanging</div>
+    </div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="section">
+    <h2><span class="num">2</span> Get started in 30 seconds</h2>
+    <p>ThreatCheck works out of the box with 20+ free services that don't require any configuration. Just select text and go.</p>
+    <p style="margin-top:12px">For deeper enrichment, you can optionally configure API keys for services that provide auto-check results directly in the popup - no need to open external tabs.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>VirusTotal</h3>
+        <p>Detection ratios, engine results, ASN, reputation, community comments</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>AbuseIPDB</h3>
+        <p>Abuse confidence score, report categories, ISP, TOR detection</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>Recorded Future</h3>
+        <p>Risk scores, evidence rules, threat context, intelligence search</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>OpenCTI</h3>
+        <p>Indicators, relationships, reports, threat actors, malware families</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>Spur</h3>
+        <p>VPN/proxy/TOR detection, tunnel attribution, residential proxy identification</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>Shodan, Censys, GreyNoise...</h3>
+        <p>Open ports, services, banners, internet noise classification</p>
+        <span class="tag tag-free">Direct lookup</span>
+      </div>
+      <div class="card">
+        <h3>URLScan</h3>
+        <p>Historical scan results, screenshots, page analysis</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>LeakCheck</h3>
+        <p>Breach data per source with exposed passwords, usernames, and metadata</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>DNSDumpster</h3>
+        <p>Host records, MX, NS, TXT, CNAME with banners and ASN attribution</p>
+        <span class="tag tag-api">Optional API key</span>
+      </div>
+      <div class="card">
+        <h3>20+ more services</h3>
+        <p>OTX, ThreatFox, MalwareBazaar, Pulsedive, Spamhaus, WHOIS, TOR Archive, GitHub Code, NVD, MITRE...</p>
+        <span class="tag tag-free">Direct lookup</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <h2><span class="num">3</span> Key features</h2>
+    <ul>
+      <li><strong style="color:#d1d5db">Auto-refanging</strong> - handles defanged IOCs like <code style="display:inline;padding:1px 6px;font-size:11px;background:rgba(0,0,0,.3);border-radius:3px;color:#60a5fa">hxxps://evil[.]com</code> and <code style="display:inline;padding:1px 6px;font-size:11px;background:rgba(0,0,0,.3);border-radius:3px;color:#60a5fa">admin[at]evil[.]com</code></li>
+      <li><strong style="color:#d1d5db">Defang copy</strong> - one-click copy IOCs in safe format for reports and tickets</li>
+      <li><strong style="color:#d1d5db">Bulk extraction</strong> - select a paragraph from a threat report, all IOCs extracted and deduplicated</li>
+      <li><strong style="color:#d1d5db">URL + domain splitting</strong> - selecting a URL automatically offers both the full URL and the extracted domain</li>
+      <li><strong style="color:#d1d5db">API auto-enrichment</strong> - scores and context from configured services appear directly in the popup</li>
+      <li><strong style="color:#d1d5db">Expandable context panels</strong> - click any score badge to see full details without leaving the page</li>
+      <li><strong style="color:#d1d5db">1,285 TLDs</strong> - full IANA TLD list for accurate domain detection, no false positives</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <a class="btn btn-primary" href="options.html">
+      <svg viewBox="0 0 16 16"><path d="M8 10a2 2 0 100-4 2 2 0 000 4z"/><path d="M13.2 6.8l-.8-.4a4.5 4.5 0 000-1l.8-.4a.5.5 0 00.2-.6l-.6-1a.5.5 0 00-.6-.2l-.8.4a4.5 4.5 0 00-.8-.5V2.5a.5.5 0 00-.5-.5h-1.2a.5.5 0 00-.5.5v.8a4.5 4.5 0 00-.8.5l-.8-.4a.5.5 0 00-.6.2l-.6 1a.5.5 0 00.2.6l.8.4a4.5 4.5 0 000 1l-.8.4a.5.5 0 00-.2.6l.6 1a.5.5 0 00.6.2l.8-.4a4.5 4.5 0 00.8.5v.8a.5.5 0 00.5.5h1.2a.5.5 0 00.5-.5v-.8a4.5 4.5 0 00.8-.5l.8.4a.5.5 0 00.6-.2l.6-1a.5.5 0 00-.2-.6z"/></svg>
+      Configure API keys
+    </a>
+    <a class="btn btn-secondary" href="https://github.com/mthcht/threatcheck" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M8 8v4M5 12h6"/></svg>
+      View on GitHub
+    </a>
+  </div>
+
+</div>
+
+<div class="footer">
+  <a href="https://github.com/mthcht/threatcheck" target="_blank" rel="noopener noreferrer">github.com/mthcht/threatcheck</a><br>
+  No ads - No data collection - Open source
+</div>
+
+</body>
+</html>
