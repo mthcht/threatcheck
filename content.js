@@ -224,7 +224,9 @@
 
   /* ═══════════ UI ═══════════ */
   let popup=null;
+  let transitioning=false;
   function kill(){if(!popup)return;popup.classList.add("cc-out");const r=popup;setTimeout(()=>r.remove(),100);popup=null;}
+  function killNow(){if(!popup)return;popup.remove();popup=null;}
 
   function posPopup(el,mx,my,selDir){
     const rect=el.getBoundingClientRect();const vw=window.innerWidth,vh=window.innerHeight;
@@ -359,7 +361,9 @@
   /* ── Single IOC popup ── */
   function showSingle(det,mx,my,selDir,backFn){
     kill();
-    const items=getUrls(det);if(!items.length)return;
+    const items=getUrls(det);
+    console.log("[ThreatCheck] showSingle:",det.type,det.value,"services:",items.length,items.map(i=>i.n));
+    if(!items.length)return;
     popup=document.createElement("div");popup.className="cc-p";popup.setAttribute("data-cc-threatcheck","1");
     /* Header */
     const hdr=document.createElement("div");hdr.className="cc-h";
@@ -470,11 +474,17 @@
       const arrow=document.createElement("span");arrow.className="cc-ba";arrow.textContent="›";
       row.append(cb,bdg,vt,scoreWrap,arrow);
       row.addEventListener("click",ev=>{
-        ev.stopPropagation();if(ev.target===cb)return;
+        ev.stopPropagation();ev.preventDefault();if(ev.target===cb)return;
         const det={type:ioc.type,label:ioc.label,value:ioc.value};
         const rect=row.getBoundingClientRect();
         const bx=rect.right+window.scrollX,by=rect.top+window.scrollY+rect.height/2;
-        showSingle(det,bx,by,"ltr",()=>showBulk(iocs,mx,my,selDir));
+        console.log("[ThreatCheck] Bulk row clicked:",det.type,det.value,"pos:",bx,by);
+        killNow();
+        transitioning=true;
+        requestAnimationFrame(()=>{
+          showSingle(det,bx,by,"ltr",()=>showBulk(iocs,mx,my,selDir));
+          transitioning=false;
+        });
       });
       list.appendChild(row);
     }
@@ -488,8 +498,12 @@
 
   /* ═══════════ EVENTS ═══════════ */
   let tmr=null,mouseDownX=0;
-  document.addEventListener("mousedown",ev=>{mouseDownX=ev.clientX;if(popup&&!ev.target.closest("[data-cc-threatcheck]"))kill();});
+  document.addEventListener("mousedown",ev=>{
+    if(transitioning)return;
+    mouseDownX=ev.clientX;if(popup&&!ev.target.closest("[data-cc-threatcheck]"))kill();
+  });
   document.addEventListener("mouseup",ev=>{
+    if(transitioning)return;
     if(ev.target.closest("[data-cc-threatcheck]"))return;
     clearTimeout(tmr);const upX=ev.clientX,upY=ev.clientY;const selDir=upX>=mouseDownX?"ltr":"rtl";
     tmr=setTimeout(()=>{
