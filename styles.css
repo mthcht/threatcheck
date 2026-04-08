@@ -27,7 +27,7 @@
 .cc-sc{flex-shrink:0;font-size:8px;font-weight:600;margin-left:auto;padding:0 4px;border-radius:100px;line-height:14px;white-space:nowrap}
 
 /* Bulk IOC Panel */
-.cc-bp{position:absolute;z-index:2147483647;min-width:320px;max-width:620px;width:max-content;max-height:85vh;background:#1a1c23;border:1px solid rgba(255,255,255,.1);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.55);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;font-size:11px;color:#e4e4e7;padding:0;overflow:hidden;display:flex;flex-direction:column;animation:cc-in .1s ease-out;user-select:none;line-height:1.3;box-sizing:border-box}
+.cc-bp{position:absolute;z-index:2147483647;min-width:320px;max-width:780px;width:max-content;max-height:85vh;background:#1a1c23;border:1px solid rgba(255,255,255,.1);border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.55);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;font-size:11px;color:#e4e4e7;padding:0;overflow:hidden;display:flex;flex-direction:column;animation:cc-in .1s ease-out;user-select:none;line-height:1.3;box-sizing:border-box}
 .cc-bh{display:flex;align-items:center;justify-content:space-between;padding:8px 6px 6px 10px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
 .cc-bt{font-size:12px;font-weight:600;color:#e4e4e7}
 .cc-btb{display:flex;align-items:center;gap:6px;padding:5px 8px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
@@ -72,4 +72,6 @@
 .cc-back:hover{background:rgba(96,165,250,.15) !important;color:#bfdbfe !important}
 
 /* Bulk panel inline score badges */
-.cc-bsc{display:flex;gap:3px;flex-shrink:0;align-items:center;margin-left:auto;padding-right:2px}
+.cc-bsc{display:flex;gap:4px;flex-shrink:0;align-items:center;margin-left:auto;padding-right:2px;flex-wrap:wrap;justify-content:flex-end;max-width:50%}
+.cc-bsc-tag{display:inline-flex;align-items:center;gap:2px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:0 4px;line-height:16px;white-space:nowrap}
+.cc-bsc-lbl{font-size:7px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.03em}

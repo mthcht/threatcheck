@@ -460,14 +460,19 @@
       if(chrome.runtime?.id){
         const det={type:ioc.type,label:ioc.label,value:ioc.value};
         const apiServices=getUrls(det).filter(s=>s.apiSvc);
+        /* Short labels for bulk panel readability */
+        const svcLabels={virustotal:"VT",abuseipdb:"AIPDB",recordedfuture:"RF",opencti:"OCTI",spur:"Spur",urlscan:"US",dnsdumpster:"DNS",validin:"Val",leakcheck:"LC"};
         for(const svc of apiServices){
           if(svc.apiSvc==="validin"&&!cfg.validin_autocheck)continue;
           if(svc.apiSvc==="urlscan"&&!cfg.urlscan_key)continue;
           if(svc.apiSvc==="virustotal"&&(!cfg.vt_key||cfg.vt_autocheck===false))continue;
           if(svc.apiSvc==="abuseipdb"&&!cfg.abuseipdb_key)continue;
+          const tag=document.createElement("span");tag.className="cc-bsc-tag";
+          const lbl=document.createElement("span");lbl.className="cc-bsc-lbl";lbl.textContent=svcLabels[svc.apiSvc]||svc.apiSvc;
           const sc=document.createElement("span");sc.className="cc-sc";sc.textContent="…";sc.style.color="#6b7280";
           sc.title=svc.n;
-          scoreWrap.appendChild(sc);
+          tag.append(lbl,sc);
+          scoreWrap.appendChild(tag);
           triggerApiCheck(sc,row,list,svc.apiSvc,ioc.type,ioc.value);
         }
       }
