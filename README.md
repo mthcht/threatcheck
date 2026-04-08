@@ -4,7 +4,29 @@
 
 Select any indicator of compromise on any web page - or highlight an entire paragraph from a threat report - and instantly extract and look up every IOC across multiple platforms. No copy-pasting between tabs.
 
-**No ads. No data collection. Open source.**
+## Screenshots
+
+<img width="1409" height="907" alt="Capture d&#39;écran 2026-04-08 152430 - Copie" src="https://github.com/user-attachments/assets/ac429f8c-906d-480b-a980-d98f2ea8106a" />
+
+---
+<img width="634" height="650" alt="Capture d&#39;écran 2026-04-08 152159" src="https://github.com/user-attachments/assets/62957fcf-50e4-4325-8bf7-0cdaa55ecbbf" />
+
+---
+
+<img width="1091" height="1006" alt="Capture d&#39;écran 2026-04-08 155228 - Copie" src="https://github.com/user-attachments/assets/197206d7-6e44-4d24-8547-22888aa8afd1" />
+
+---
+<img width="571" height="468" alt="Capture d&#39;écran 2026-04-08 165304" src="https://github.com/user-attachments/assets/de583c60-76e1-464f-88e8-6a3c43c993fa" />
+
+---
+
+<img width="1076" height="357" alt="Capture d&#39;écran 2026-04-08 165348" src="https://github.com/user-attachments/assets/3cde34ab-c0e1-46ee-94d7-639aa4826db2" />
+
+---
+
+<img width="625" height="250" alt="Capture d&#39;écran 2026-04-08 165443" src="https://github.com/user-attachments/assets/d57ac298-e957-4e9f-8421-04d5342e3a55" />
+
+---
 
 ## How it works
 
@@ -122,6 +144,9 @@ Most services work as direct links with no configuration needed. For deeper enri
 3. Enable "Developer mode"
 4. Click "Load unpacked"
 5. Select the extension folder
+
+### From Chrome Store
+*publication in progress**
 
 ### Configuration
 
