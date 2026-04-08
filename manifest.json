@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ThreatCheck",
   "version": "1.0.0",
-  "description": "Select any IOC on any web page to instantly look it up across 29 threat intel platforms. Supports IPs, domains, hashes, URLs, emails, CVEs. Bulk extraction from paragraphs. API auto-enrichment. No ads. Open source.",
+  "description": "Select any IOC on any web page to look it up across 29 threat intel platforms. Bulk extraction. API enrichment.",
   "author": "mthcht",
   "homepage_url": "https://github.com/mthcht/threatcheck",
   "permissions": ["storage","contextMenus"],
