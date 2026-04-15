@@ -40,12 +40,9 @@ chrome.commands.onCommand.addListener((command) => {
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.action !== "apiCheck") return false;
 
-  console.log("[ThreatCheck BG] Received:", msg.service, msg.type, msg.value);
-
   (async () => {
     try {
       const result = await handleApiCheck(msg);
-      console.log("[ThreatCheck BG] Result:", msg.service, result?.label || result?.error || "empty");
       sendResponse(result);
     } catch (err) {
       console.error("[ThreatCheck BG] Error:", msg.service, err);
@@ -375,7 +372,6 @@ async function dnsdumpsterLookup(value, config) {
   const domain = value.replace(/^https?:\/\//i, "").replace(/[:\/].*/, "").replace(/\.+$/, "").toLowerCase().trim();
   if (!domain || !domain.includes(".")) return { error: "Invalid domain: " + domain };
 
-  console.log("[ThreatCheck BG] DNSDumpster query:", domain, "key length:", key.length);
 
   const apiUrl = "https://api.dnsdumpster.com/domain/" + domain;
   const hdrs = { "X-API-Key": key, "Accept": "application/json" };
@@ -383,7 +379,6 @@ async function dnsdumpsterLookup(value, config) {
   let resp = await fetch(apiUrl, { headers: hdrs });
 
   if (resp.status === 429) {
-    console.log("[ThreatCheck BG] DNSDumpster 429, retrying...");
     await new Promise(r => setTimeout(r, 3000));
     resp = await fetch(apiUrl, { headers: hdrs });
   }
@@ -401,7 +396,6 @@ async function dnsdumpsterLookup(value, config) {
   }
 
   const data = await resp.json();
-  console.log("[ThreatCheck BG] DNSDumpster keys:", JSON.stringify(Object.keys(data)));
 
   /* Handle potential response wrapper */
   const src = data.dns_records || data;
@@ -580,7 +574,6 @@ async function spurLookup(value, config) {
   const token = (config?.spur_token || "").trim();
   if (!token) return { error: "No Spur token" };
 
-  console.log("[ThreatCheck BG] Spur lookup:", value, "token length:", token.length);
 
   const url = `https://api.spur.us/v2/context/${encodeURIComponent(value)}`;
   const hdrs = { "Token": token, "Accept": "application/json" };

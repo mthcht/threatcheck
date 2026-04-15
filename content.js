@@ -362,7 +362,6 @@
   function showSingle(det,mx,my,selDir,backFn){
     kill();
     const items=getUrls(det);
-    console.log("[ThreatCheck] showSingle:",det.type,det.value,"services:",items.length,items.map(i=>i.n));
     if(!items.length)return;
     popup=document.createElement("div");popup.className="cc-p";popup.setAttribute("data-cc-threatcheck","1");
     /* Header */
@@ -402,28 +401,30 @@
       list.appendChild(a);
       /* Fire API auto-check if service supports it */
       if(it.apiSvc){
-        /* Validin: manual check by default to save tokens */
-        if(it.apiSvc==="validin"&&!cfg.validin_autocheck){
-          scoreSpan.textContent="check";
-          scoreSpan.style.color="#a29bfe";
-          scoreSpan.style.cursor="pointer";
-          scoreSpan.title="Click to check via API (tokens are limited)";
-          scoreSpan.addEventListener("click",(ev)=>{
-            ev.preventDefault();ev.stopPropagation();
+        /* Map each apiSvc to its key config and autocheck config */
+        const svcCfg={
+          virustotal:{key:"vt_key",ac:"vt_autocheck"},
+          abuseipdb:{key:"abuseipdb_key",ac:"abuseipdb_autocheck"},
+          recordedfuture:{key:"rf_token",ac:"rf_autocheck"},
+          opencti:{key:"opencti_token",ac:"opencti_autocheck"},
+          spur:{key:"spur_token",ac:"spur_autocheck"},
+          urlscan:{key:"urlscan_key",ac:"urlscan_autocheck"},
+          dnsdumpster:{key:"dnsdumpster_key",ac:"dnsdumpster_autocheck"},
+          validin:{key:"validin_key",ac:"validin_autocheck"},
+          leakcheck:{key:"leakcheck_key",ac:"leakcheck_autocheck"}
+        };
+        const sc=svcCfg[it.apiSvc];
+        if(sc){
+          const hasKey=cfg[sc.key]&&String(cfg[sc.key]).trim()!=="";
+          const autoOn=cfg[sc.ac]!==false;
+          if(hasKey&&autoOn){
             triggerApiCheck(scoreSpan,a,list,it.apiSvc,det.type,det.value);
-          });
-        }else if(it.apiSvc==="urlscan"&&!cfg.urlscan_key){
-          /* URLScan: skip auto-check when no key */
-        }else if(it.apiSvc==="virustotal"&&!cfg.vt_key){
-          /* VT: skip auto-check when no key */
-        }else if(it.apiSvc==="virustotal"&&cfg.vt_key&&cfg.vt_autocheck===false){
-          scoreSpan.textContent="check";scoreSpan.style.color="#394eff";scoreSpan.style.cursor="pointer";
-          scoreSpan.title="Click to check via VirusTotal API";
-          scoreSpan.addEventListener("click",(ev)=>{ev.preventDefault();ev.stopPropagation();triggerApiCheck(scoreSpan,a,list,it.apiSvc,det.type,det.value);});
-        }else if(it.apiSvc==="abuseipdb"&&!cfg.abuseipdb_key){
-          /* AbuseIPDB: skip auto-check when no key */
-        }else{
-          triggerApiCheck(scoreSpan,a,list,it.apiSvc,det.type,det.value);
+          }else if(hasKey&&!autoOn){
+            scoreSpan.textContent="check";scoreSpan.style.color=it.co||"#60a5fa";scoreSpan.style.cursor="pointer";
+            scoreSpan.title="Click to check via "+it.n+" API";
+            scoreSpan.addEventListener("click",(ev)=>{ev.preventDefault();ev.stopPropagation();triggerApiCheck(scoreSpan,a,list,it.apiSvc,det.type,det.value);});
+          }
+          /* else: no key = skip silently */
         }
       }
     }
@@ -460,13 +461,24 @@
       if(chrome.runtime?.id){
         const det={type:ioc.type,label:ioc.label,value:ioc.value};
         const apiServices=getUrls(det).filter(s=>s.apiSvc);
-        /* Short labels for bulk panel readability */
         const svcLabels={virustotal:"VT",abuseipdb:"AIPDB",recordedfuture:"RF",opencti:"OCTI",spur:"Spur",urlscan:"US",dnsdumpster:"DNS",validin:"Val",leakcheck:"LC"};
+        const svcCfgMap={
+          virustotal:{key:"vt_key",ac:"vt_autocheck"},
+          abuseipdb:{key:"abuseipdb_key",ac:"abuseipdb_autocheck"},
+          recordedfuture:{key:"rf_token",ac:"rf_autocheck"},
+          opencti:{key:"opencti_token",ac:"opencti_autocheck"},
+          spur:{key:"spur_token",ac:"spur_autocheck"},
+          urlscan:{key:"urlscan_key",ac:"urlscan_autocheck"},
+          dnsdumpster:{key:"dnsdumpster_key",ac:"dnsdumpster_autocheck"},
+          validin:{key:"validin_key",ac:"validin_autocheck"},
+          leakcheck:{key:"leakcheck_key",ac:"leakcheck_autocheck"}
+        };
         for(const svc of apiServices){
-          if(svc.apiSvc==="validin"&&!cfg.validin_autocheck)continue;
-          if(svc.apiSvc==="urlscan"&&!cfg.urlscan_key)continue;
-          if(svc.apiSvc==="virustotal"&&(!cfg.vt_key||cfg.vt_autocheck===false))continue;
-          if(svc.apiSvc==="abuseipdb"&&!cfg.abuseipdb_key)continue;
+          const sc2=svcCfgMap[svc.apiSvc];
+          if(!sc2)continue;
+          const hasKey=cfg[sc2.key]&&String(cfg[sc2.key]).trim()!=="";
+          const autoOn=cfg[sc2.ac]!==false;
+          if(!hasKey||!autoOn)continue;
           const tag=document.createElement("span");tag.className="cc-bsc-tag";
           const lbl=document.createElement("span");lbl.className="cc-bsc-lbl";lbl.textContent=svcLabels[svc.apiSvc]||svc.apiSvc;
           const sc=document.createElement("span");sc.className="cc-sc";sc.textContent="…";sc.style.color="#6b7280";
@@ -483,13 +495,14 @@
         const det={type:ioc.type,label:ioc.label,value:ioc.value};
         const rect=row.getBoundingClientRect();
         const bx=rect.right+window.scrollX,by=rect.top+window.scrollY+rect.height/2;
-        console.log("[ThreatCheck] Bulk row clicked:",det.type,det.value,"pos:",bx,by);
+        /* Clear any pending mouseup timer, kill popup, and show single with delay */
+        clearTimeout(tmr);
         killNow();
         transitioning=true;
-        requestAnimationFrame(()=>{
-          showSingle(det,bx,by,"ltr",()=>showBulk(iocs,mx,my,selDir));
-          transitioning=false;
-        });
+        setTimeout(()=>{
+          showSingle(det,bx,by,"ltr",()=>{transitioning=true;clearTimeout(tmr);showBulk(iocs,mx,my,selDir);setTimeout(()=>{transitioning=false;},200);});
+          setTimeout(()=>{transitioning=false;},200);
+        },50);
       });
       list.appendChild(row);
     }
