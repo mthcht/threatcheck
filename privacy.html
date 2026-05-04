@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThreatCheck - Privacy Policy</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0d0f14;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;line-height:1.7;min-height:100vh}
+  .wrap{max-width:720px;margin:0 auto;padding:48px 24px 60px}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:32px}
+  .brand svg{color:#60a5fa;flex-shrink:0}
+  .brand h1{font-size:22px;font-weight:700}
+  h2{font-size:17px;font-weight:600;color:#d1d5db;margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+  h3{font-size:14px;font-weight:600;color:#d1d5db;margin:20px 0 8px}
+  p{font-size:13.5px;color:#9ca3af;margin-bottom:12px}
+  ul{padding-left:20px;margin-bottom:12px}
+  li{font-size:13.5px;color:#9ca3af;margin-bottom:6px}
+  li strong{color:#d1d5db;font-weight:500}
+  code{font-family:"SF Mono","Cascadia Code",Consolas,monospace;font-size:12px;background:rgba(255,255,255,.06);padding:1px 6px;border-radius:3px;color:#60a5fa}
+  a{color:#60a5fa;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .updated{font-size:11px;color:#4b5563;margin-bottom:24px}
+  .summary{padding:16px 20px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.1);border-radius:10px;margin-bottom:32px}
+  .summary p{color:#86efac;margin:0;font-size:13px;font-weight:500}
+  .table-wrap{overflow-x:auto;margin:12px 0 16px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:left;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);font-weight:600;color:#9ca3af;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  td{padding:8px 12px;border:1px solid rgba(255,255,255,.06);color:#9ca3af;vertical-align:top}
+  td:first-child{color:#d1d5db;font-weight:500;white-space:nowrap}
+  .footer{text-align:center;padding:24px;border-top:1px solid rgba(255,255,255,.04);font-size:11px;color:#4b5563;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brand">
+  <svg viewBox="0 0 28 28" width="28" height="28" fill="none">
+    <rect x="1" y="1" width="26" height="26" rx="6" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M8 14l4 4 7-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <h1>ThreatCheck - Privacy Policy</h1>
+</div>
+
+<p class="updated">Last updated: April 8, 2026</p>
+
+<div class="summary">
+  <p>ThreatCheck does not collect, store, transmit, or sell any user data. All processing happens locally in your browser.</p>
+</div>
+
+<h2>1. Overview</h2>
+<p>ThreatCheck is a free, open-source browser extension that helps security professionals look up indicators of compromise (IOCs) across multiple threat intelligence platforms. This privacy policy explains how ThreatCheck handles data.</p>
+
+<h2>2. Data collection</h2>
+<p>ThreatCheck does <strong style="color:#d1d5db">not</strong> collect any data. Specifically:</p>
+<ul>
+  <li><strong>No personal information</strong> is collected (name, email, demographics, location, etc.)</li>
+  <li><strong>No browsing history</strong> is recorded or transmitted</li>
+  <li><strong>No page content</strong> is read, stored, or sent anywhere beyond what the user explicitly selects</li>
+  <li><strong>No analytics or telemetry</strong> of any kind is implemented</li>
+  <li><strong>No cookies or tracking</strong> mechanisms are used by the extension</li>
+  <li><strong>No user behavior</strong> is monitored, profiled, or logged</li>
+  <li><strong>No crash reports</strong> are sent to any server</li>
+</ul>
+
+<h2>3. Data stored locally</h2>
+<p>ThreatCheck stores the following data locally in your browser using <code>chrome.storage.sync</code>:</p>
+<div class="table-wrap">
+<table>
+  <tr><th>Data</th><th>Purpose</th><th>Stored where</th></tr>
+  <tr><td>Service on/off toggles</td><td>Remember which lookup services are enabled or disabled</td><td>Local browser storage only</td></tr>
+  <tr><td>API keys</td><td>Authenticate with optional threat intel services (VirusTotal, AbuseIPDB, etc.)</td><td>Local browser storage only</td></tr>
+  <tr><td>Auto-check preferences</td><td>Remember per-service auto-check toggle state</td><td>Local browser storage only</td></tr>
+</table>
+</div>
+<p>This data never leaves your browser. It is not transmitted to any server, including servers operated by the extension developer. If you use Chrome sync, this data may sync across your Chrome profiles per Google's own sync policies.</p>
+
+<h2>4. Network requests</h2>
+<p>ThreatCheck makes network requests <strong style="color:#d1d5db">only</strong> when the user explicitly triggers an IOC lookup, and <strong style="color:#d1d5db">only</strong> to the specific threat intelligence services the user has configured. These requests are:</p>
+<ul>
+  <li><strong>User-initiated</strong> - they only happen when you select text and an API auto-check fires, or when you click a service link</li>
+  <li><strong>Direct</strong> - calls go directly from your browser to the third-party service (e.g., api.virustotal.com). There is no intermediary server</li>
+  <li><strong>Minimal</strong> - only the selected IOC value (IP address, domain, hash, etc.) is sent to the service. No other data is included</li>
+</ul>
+
+<h3>Third-party services</h3>
+<p>When you configure API keys and enable auto-check for a service, ThreatCheck sends the selected IOC to that service's API. Each service has its own privacy policy:</p>
+<div class="table-wrap">
+<table>
+  <tr><th>Service</th><th>Data sent</th><th>When</th></tr>
+  <tr><td>VirusTotal</td><td>The selected IOC (IP, domain, hash, URL)</td><td>Only when VT API key is configured and auto-check is enabled</td></tr>
+  <tr><td>AbuseIPDB</td><td>The selected IP address</td><td>Only when AbuseIPDB API key is configured and auto-check is enabled</td></tr>
+  <tr><td>Recorded Future</td><td>The selected IOC</td><td>Only when RF API token is configured and auto-check is enabled</td></tr>
+  <tr><td>OpenCTI</td><td>The selected IOC</td><td>Only when OpenCTI URL and token are configured and auto-check is enabled</td></tr>
+  <tr><td>Spur</td><td>The selected IP address</td><td>Only when Spur API token is configured and auto-check is enabled</td></tr>
+  <tr><td>URLScan.io</td><td>The selected URL or domain</td><td>Only when URLScan API key is configured and auto-check is enabled</td></tr>
+  <tr><td>DNSDumpster</td><td>The selected domain</td><td>Only when DNSDumpster API key is configured and auto-check is enabled</td></tr>
+  <tr><td>Validin</td><td>The selected domain or IP</td><td>Only when Validin API key is configured and auto-check is enabled</td></tr>
+  <tr><td>LeakCheck</td><td>The selected email address</td><td>Only when LeakCheck API key is configured and auto-check is enabled</td></tr>
+</table>
+</div>
+<p>No API calls are made unless you have explicitly configured an API key for that service and enabled auto-check in the extension settings. You can disable auto-check per service at any time.</p>
+
+<h2>5. Permissions</h2>
+<p>ThreatCheck requests the following browser permissions:</p>
+<ul>
+  <li><strong>storage</strong> - to save your service preferences and API keys locally in the browser</li>
+  <li><strong>contextMenus</strong> - to add a "Look up on ThreatCheck" option to the right-click menu when text is selected</li>
+  <li><strong>Host permissions</strong> - the content script runs on all pages to detect text selection and display the lookup popup. API calls require access to specific service domains (virustotal.com, abuseipdb.com, etc.). No page content is read or transmitted beyond the text you explicitly select</li>
+</ul>
+
+<h2>6. Data sharing and selling</h2>
+<p>ThreatCheck does <strong style="color:#d1d5db">not</strong>:</p>
+<ul>
+  <li>Sell any data to third parties</li>
+  <li>Share any data with third parties for advertising purposes</li>
+  <li>Share any data with third parties for analytics purposes</li>
+  <li>Transfer any data to third parties for credit-related purposes</li>
+  <li>Transfer any data to third parties for any purpose unrelated to the extension's core functionality</li>
+</ul>
+
+<h2>7. Data security</h2>
+<p>API keys are stored in your browser's local extension storage (<code>chrome.storage.sync</code>). They are not encrypted by the extension beyond the browser's own storage protections. API keys are sent directly to the respective services over HTTPS. No API key is ever sent to any server other than the service it belongs to.</p>
+
+<h2>8. Children's privacy</h2>
+<p>ThreatCheck is a professional security tool not directed at children under the age of 13. The extension does not knowingly collect any personal information from anyone, including children.</p>
+
+<h2>9. Changes to this policy</h2>
+<p>If this privacy policy is updated, the changes will be reflected on this page with an updated date. Since ThreatCheck does not collect any data, significant changes to this policy are unlikely.</p>
+
+<h2>10. Open source</h2>
+<p>ThreatCheck is fully open source. You can inspect the complete source code to verify these privacy claims:</p>
+<p><a href="https://github.com/mthcht/threatcheck" target="_blank" rel="noopener noreferrer">github.com/mthcht/threatcheck</a></p>
+
+<h2>11. Contact</h2>
+<p>For questions about this privacy policy, please open an issue on the GitHub repository:</p>
+<p><a href="https://github.com/mthcht/threatcheck/issues" target="_blank" rel="noopener noreferrer">github.com/mthcht/threatcheck/issues</a></p>
+
+<div class="footer">
+  <a href="https://github.com/mthcht/threatcheck">github.com/mthcht/threatcheck</a><br>
+  No ads - No data collection - Open source
+</div>
+
+</div>
+</body>
+</html>
