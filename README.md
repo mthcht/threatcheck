@@ -150,7 +150,8 @@ Most services work as direct links with no configuration needed. For deeper enri
 5. Select the extension folder
 
 ### From Chrome Store
-*publication in progress**
+
+available here: https://chromewebstore.google.com/detail/emojejfncbecodhhlcochmipfebbpkpj
 
 ### Configuration
 
